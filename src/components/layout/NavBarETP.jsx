@@ -4,7 +4,7 @@ import { Link, useLocation  } from 'react-router-dom';
 
 const NavList = [
     {titre: 'Accueil', url: '/AccueilETP'},
-    {titre: 'Catalogue', url: '/Cata_Of_ETP', dropdown: true, subItems: [
+    {titre: 'Catalogue', url: '/CataOFETP', dropdown: true, subItems: [
         { subTitre: 'Catalogue des organismes de formation', subUrl: '/CataOFETP' },
         { subTitre: 'Catalogues Internes', subUrl: '/CataInterneETP' },
     ]},
@@ -13,7 +13,7 @@ const NavList = [
         { subTitre: 'Projet terminer', subUrl: '/ProjetTerminer' },
     ]},
     {titre: 'Agenda', url: '/AgendaETP'},
-    {titre: 'Administration', url: '/AdministrationETP', dropdown: true, subItems: [
+    {titre: 'Administration', url: '/EmargementETP', dropdown: true, subItems: [
         { subTitre: 'Emargement', subUrl: '/EmargementETP' },
         { subTitre: 'Evaluation', subUrl: '/EvaluationETP' },
     ]},
