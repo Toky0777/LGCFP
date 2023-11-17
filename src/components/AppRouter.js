@@ -53,6 +53,9 @@ import InvitationFORM from './page/FORM/Invitation/InvitationFORM'
 import BanqueQFORM from './page/FORM/Quiz/BanqueQFORM'
 import ListQuizFORM from './page/FORM/Quiz/ListQuizFORM'
 import ResultatFORM from './page/FORM/Quiz/ResultatFORM'
+import Index from './page/Index'
+import LogIn from './page/Log/LogIn'
+import SingIn from './page/Log/SingIn'
 
 
 
@@ -60,9 +63,16 @@ export default function AppRouter() {
   return (
     <div>
         <Routes>
-          CFP
-            <Route exact path="/" element={<Welcome/>}/>
+
+            <Route exact path="/SingIn" element={<SingIn/>}/>
+            <Route exact path="/Login" element={<LogIn/>}/>
+            
+            <Route exact path="/" element={<Index/>}/>
+            <Route exact path="/Welcome" element={<Welcome/>}/>
             <Route path="/test" element={<Test/>}/>
+
+            
+          CFP
             <Route path="/AccueilCfp" element={<AccueilCfp/>}/>
             <Route path="/Thematique" element={<Thematique/>}/>
             <Route path="/Module" element={<Module/>}/>
