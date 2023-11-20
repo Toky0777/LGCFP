@@ -1,11 +1,11 @@
-import { Button, Card, CardBody, CardFooter, Checkbox, Input, Option, Select, Typography } from '@material-tailwind/react'
+import { Card, CardBody, CardFooter, Option, Select, Typography } from '@material-tailwind/react'
 import React, { useState, useEffect } from 'react';
 import { MyInput } from '../MyInput'
 import { ButtonPrimary } from '../Boutons';
 
 function ThematiqueForm() {
   const [domains, setDomains] = useState([]);
-  const [selectedDomain, setSelectedDomain] = useState('');
+  const [, setSelectedDomain] = useState('');
   const [thematics, setThematics] = useState([]);
 
   useEffect(() => {

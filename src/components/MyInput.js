@@ -1,8 +1,7 @@
-import { Input, Option, Select, Textarea, Typography } from "@material-tailwind/react";
-import InfoIcon from '@mui/icons-material/Info';
+import { Input, Option, Select, Textarea } from "@material-tailwind/react";
 
 export function MyInput(props) {
-  const { label, success } = props;
+  const { label } = props;
   return (
     <div className="">
       <Input label={label} color="purple" />
@@ -12,7 +11,7 @@ export function MyInput(props) {
         className="mt-2 flex items-center gap-1 font-normal"
       >
         {/* <InfoIcon /> */}
-        {/* Info norma. */}
+      {/* Info norma. */}
       {/* </Typography> :
 
         <Typography
@@ -29,7 +28,7 @@ export function MyInput(props) {
 }
 
 export function MyTextarea(props) {
-  const { label, success } = props;
+  const { label } = props;
   return (
     <div className="">
       <Textarea label={label} color="purple" />
@@ -55,7 +54,7 @@ export function MyTextarea(props) {
   );
 }
 export function MySelectInput(props) {
-  const { label, data, success } = props;
+  const { label, data } = props;
   return (
     <div className="">
       <Select label={label} color="purple">
