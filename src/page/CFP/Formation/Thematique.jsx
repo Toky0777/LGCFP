@@ -15,6 +15,7 @@ import { ButtonAdd } from '../../../components/Boutons'
 
 // ICON
 import { BookOpenIcon } from '@heroicons/react/24/solid'
+import ThematiqueForm from '../../../components/modal-form/ThematiqueForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
@@ -130,7 +131,7 @@ export default function Thematique() {
   return (
     <div>
       <NavBar />
-      <SubComponent icon={<BookOpenIcon class="w-7 text-gray-800" />} label="Thématique de formations" btn_name={<ButtonAdd name="Ajouter un thématique" size="sm" />} />
+      <SubComponent icon={<BookOpenIcon class="w-7 text-gray-800" />} label="Thématique de formations" btn_name={<ButtonAdd name="Ajouter un thématique" size="sm" modal_size="lg" modal={<ThematiqueForm />} />} />
       <MembersTable />
     </div>
   )
