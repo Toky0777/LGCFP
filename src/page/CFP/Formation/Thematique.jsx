@@ -15,6 +15,7 @@ import { ButtonAdd } from '../../../components/Boutons'
 
 // ICON
 import { BookOpenIcon } from '@heroicons/react/24/solid'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const TABLE_HEAD = ["Type de formation", "Domaine de formation", "Thématique", "Action"];
@@ -90,9 +91,14 @@ function MembersTable() {
                       </Typography>
                     </td>
                     <td className={classes}>
-                      <Tooltip content="Edit User">
+                      <Tooltip content="Modifier">
                         <IconButton variant="text">
                           <PencilIcon className="h-4 w-4" />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip content="Supprimer">
+                        <IconButton variant="text">
+                          <DeleteIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
                     </td>
