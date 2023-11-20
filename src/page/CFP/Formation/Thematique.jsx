@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from '../../../layout/NavBar'
-import SubComponent from '../../../composant/SubComponent'
+import SubComponent from '../../../components/SubComponent'
 import { PencilIcon } from "@heroicons/react/24/solid";
 import {
   Card,
@@ -11,10 +11,14 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
- 
- 
+import { ButtonAdd } from '../../../components/Boutons'
+
+// ICON
+import { BookOpenIcon } from '@heroicons/react/24/solid'
+
+
 const TABLE_HEAD = ["Type de formation", "Domaine de formation", "Thématique", "Action"];
- 
+
 const TABLE_ROWS = [
   {
     type: "John Michael",
@@ -23,21 +27,11 @@ const TABLE_ROWS = [
   },
 ];
 
-export default function Thematique() {
-  return (
-    <div>
-      <NavBar/>
-      <SubComponent/>
-      <MembersTable/>
-    </div>
-  )
-}
 
- 
 function MembersTable() {
   return (
     <Card className="mx-4 h-full" shadow={false}>
-      
+
       <CardBody className="-p-6 px-0">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
@@ -65,7 +59,7 @@ function MembersTable() {
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
- 
+
                 return (
                   <tr key={thematique}>
                     <td className={classes}>
@@ -124,4 +118,14 @@ function MembersTable() {
       </CardFooter>
     </Card>
   );
+}
+
+export default function Thematique() {
+  return (
+    <div>
+      <NavBar />
+      <SubComponent icon={<BookOpenIcon class="w-7 text-gray-800" />} label="Thématique de formations" btn_name={<ButtonAdd name="Ajouter un thématique" size="sm" />} />
+      <MembersTable />
+    </div>
+  )
 }

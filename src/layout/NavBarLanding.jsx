@@ -24,9 +24,9 @@ import {
   Square3Stack3DIcon,
   SquaresPlusIcon,
 } from "@heroicons/react/24/solid";
-import { ButtonPrimary } from "../composant/Boutons";
+import { ButtonPrimary } from "../components/Boutons";
 import { Link } from "react-router-dom";
- 
+
 const navListMenuItems = [
   {
     title: "Evaluation de formation",
@@ -92,7 +92,7 @@ function NavListMenu() {
       </Link>
     ),
   );
- 
+
   return (
     <React.Fragment>
       <Menu
@@ -112,15 +112,13 @@ function NavListMenu() {
               Fonctionnalités
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${
-                  isMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
+                  }`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${
-                  isMobileMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
+                  }`}
               />
             </ListItem>
           </Typography>
@@ -137,7 +135,7 @@ function NavListMenu() {
     </React.Fragment>
   );
 }
- 
+
 function NavList() {
   return (
     <List className="lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
@@ -156,21 +154,21 @@ function NavList() {
     </List>
   );
 }
- 
+
 export function NavBarLanding() {
   const [openNav, setOpenNav] = React.useState(false);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
- 
+
   return (
     <nav className="w-full px-4 py-2">
       <div className="flex items-center justify-between text-blue-gray-900">
-        <img src="/images/Logo_lgcfp.ico" alt="logo_lgcfp" className="w-5 h-auto"/>
+        <img src="/images/Logo_lgcfp.ico" alt="logo_lgcfp" className="w-5 h-auto" />
         <div className="hidden lg:block">
           <NavList />
         </div>
@@ -178,7 +176,7 @@ export function NavBarLanding() {
           <Button variant="text" size="sm" color="white">
             Créer un compte
           </Button>
-          <ButtonPrimary size="sm" name="Se connecter" url="/Login"/>
+          <ButtonPrimary size="sm" name="Se connecter" url="/Login" />
         </div>
         <IconButton
           variant="text"

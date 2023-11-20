@@ -25,7 +25,7 @@ export default function SignIn() {
     newFormData[`step${activeStep + 1}`][fieldIndex] = value;
     setFormData(newFormData);
   };
-  
+
   const initializeFormData = () => {
     const initialFormData = {};
     stepContent.forEach((step, index) => {
@@ -56,7 +56,7 @@ export default function SignIn() {
       ],
     },
     {
-      icon: <HomeIcon className="h-5 w-5"/>,
+      icon: <HomeIcon className="h-5 w-5" />,
       title: 'Etape 2',
       fields: [
         {
@@ -72,7 +72,7 @@ export default function SignIn() {
       ],
     },
     {
-      icon: <LockClosedIcon className="h-5 w-5"/>,
+      icon: <LockClosedIcon className="h-5 w-5" />,
       title: 'Etape 3',
       fields: [
         {
@@ -97,7 +97,7 @@ export default function SignIn() {
           </Typography>
 
           <Typography variant="h6" color="blue-gray" className="text-center pb-8 ">
-          Créez votre compte Gratuitement
+            Créez votre compte Gratuitement
           </Typography>
 
 
@@ -122,35 +122,35 @@ export default function SignIn() {
           </Stepper>
           <div className="mt-16 flex flex-col gap-3">
             {stepContent[activeStep].fields.map((field, fieldIndex) => (
-              <Input 
-              key={fieldIndex}
-              type={field.type}
-              name={field.name}
-              label={field.label} 
-              value={formData[`step${activeStep + 1}`][fieldIndex] || ''}
-              onChange={(e) => handleInputChange(e, fieldIndex)}
-              variant="outlined" 
-              size="lg" 
-              color='purple'/>
+              <Input
+                key={fieldIndex}
+                type={field.type}
+                name={field.name}
+                label={field.label}
+                value={formData[`step${activeStep + 1}`][fieldIndex] || ''}
+                onChange={(e) => handleInputChange(e, fieldIndex)}
+                variant="outlined"
+                size="lg"
+                color='purple' />
             ))}
           </div>
           <div className="mt-4 flex justify-between">
             <Button onClick={handlePrev} disabled={isFirstStep} className="mt-6 bg-[#9333ea] capitalize">
               Précedent
             </Button>
-              { isLastStep ? 
+            {isLastStep ?
               <Link to="/AccueilCfp">
                 <Button onClick={handleNext} className="mt-6 bg-[#9333ea] capitalize">Terminer</Button>
               </Link> :
               <Button onClick={handleNext} className="mt-6 bg-[#9333ea] capitalize">Suivant</Button>
-              }
-            
+            }
+
           </div>
           <Typography color="gray" className="mt-4 text-center font-normal">
             Vous-avez déjà un compte ?{" "}
-              <Link to="/Login" className="font-medium text-blue-600">
+            <Link to="/Login" className="font-medium text-blue-600">
               Connecter ici..
-              </Link>
+            </Link>
           </Typography>
         </Card>
       </div>
