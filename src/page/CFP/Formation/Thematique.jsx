@@ -23,9 +23,9 @@ const TABLE_HEAD = ["Type de formation", "Domaine de formation", "Thématique", 
 
 const TABLE_ROWS = [
   {
-    type: "John Michael",
-    domaine: "Manager",
-    thematique: "Organization",
+    type: "Excel",
+    domaine: "Bureautique",
+    thematique: "Logiciel bureautique",
   },
 ];
 
@@ -35,13 +35,16 @@ function MembersTable() {
     <Card className="mx-4 h-full" shadow={false}>
 
       <CardBody className="-p-6 px-0">
-        <table className="mt-4 w-full min-w-max table-auto text-left">
+        <table className="mt-4 w-full min-w-max table-auto">
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
+                  // className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
+                  className={`border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 ${
+                    head === "Action" ? "text-center" : "text-left"
+                  }`}
                 >
                   <Typography
                     variant="small"
@@ -91,14 +94,14 @@ function MembersTable() {
                         {thematique}
                       </Typography>
                     </td>
-                    <td className={classes}>
+                    <td className={`classes text-center`}>
                       <Tooltip content="Modifier">
-                        <IconButton variant="text">
-                          <PencilIcon className="h-4 w-4" />
+                        <IconButton variant="text" color='blue'>
+                          <PencilIcon className="h-4 w-4 "/>
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Supprimer">
-                        <IconButton variant="text">
+                        <IconButton variant="text" color='red'>
                           <DeleteIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
