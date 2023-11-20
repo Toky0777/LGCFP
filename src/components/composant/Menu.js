@@ -8,6 +8,7 @@ import {
     Avatar,
     Typography,
   } from "@material-tailwind/react";
+import { Link } from 'react-router-dom';
    
   function ClockIcon() {
     return (
@@ -208,9 +209,11 @@ export function ParametreMenu() {
                 fill="#90A4AE"
               />
             </svg>
-            <Typography variant="small" className="font-medium">
-              Se déconnecter
-            </Typography>
+            <Link to="/">
+              <Typography variant="small" className="font-medium">
+                Se déconnecter
+              </Typography>
+            </Link>
           </MenuItem>
         </MenuList>
       </Menu>

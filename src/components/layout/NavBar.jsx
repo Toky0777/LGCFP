@@ -5,7 +5,7 @@ import { Link, useLocation  } from 'react-router-dom';
 const NavList = [
     {titre: 'Accueil', url: '/AccueilCfp'},
     {titre: 'Formation', url: '/Module', dropdown: true, subItems: [
-        { subTitre: 'Thematique', subUrl: '/Thematique' },
+        { subTitre: 'Thématique', subUrl: '/Thematique' },
         { subTitre: 'Module', subUrl: '/Module' },
     ] },
     {titre: 'Projet', url: '/Projet'},

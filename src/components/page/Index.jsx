@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavBarLanding } from '../layout/NavBarLanding'
-import { ButtonAdd, ButtonGray, ButtonPrimary, ButtonSecondary } from '../composant/Boutons'
-import Search from '../composant/Search'
+import { ButtonGray, ButtonPrimary } from '../composant/Boutons'
 
 export default function Index() {
   return (

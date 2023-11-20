@@ -5,7 +5,7 @@ export default function AccueilCfp() {
   return (
     <div>
     <NavBar/>
-      AccueilCfpppppppppp
+      AccueilCfp
     </div>
   )
 }

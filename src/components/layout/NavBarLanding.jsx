@@ -25,6 +25,7 @@ import {
   SquaresPlusIcon,
 } from "@heroicons/react/24/solid";
 import { ButtonPrimary } from "../composant/Boutons";
+import { Link } from "react-router-dom";
  
 const navListMenuItems = [
   {
@@ -63,7 +64,7 @@ function NavListMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const renderItems = navListMenuItems.map(
     ({ icon, title, description }, key) => (
-      <a href="#" key={key}>
+      <Link to="/" key={key}>
         <MenuItem className="flex items-center gap-3 rounded-lg">
           <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
             {" "}
@@ -88,7 +89,7 @@ function NavListMenu() {
             </Typography>
           </div>
         </MenuItem>
-      </a>
+      </Link>
     ),
   );
  

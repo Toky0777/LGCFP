@@ -20,7 +20,7 @@ export default function SignIn() {
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
 
   const handleInputChange = (e, fieldIndex) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     const newFormData = { ...formData };
     newFormData[`step${activeStep + 1}`][fieldIndex] = value;
     setFormData(newFormData);
