@@ -14,19 +14,11 @@ function ThematiqueForm() {
           variant="paragraph"
           color="gray"
         >
-          Enter your email and password to Sign In.
+          Veuillez entrer des informations pertinantes s'il vous plaît !
         </Typography>
-        <Typography className="-mb-2" variant="h6">
-          Your Email
-        </Typography>
-        <MyInput label="Email" />
-        <Typography className="-mb-2" variant="h6">
-          Your Password
-        </Typography>
-        <Input label="Password" size="lg" />
-        <div className="-ml-2.5 -mt-3">
-          <Checkbox label="Remember Me" />
-        </div>
+        <MyInput label="Type de formation" />
+        <MyInput label="Type de formation" />
+        <MyInput label="Type de formation" />
       </CardBody>
       <CardFooter className="pt-0">
         <Button variant="gradient" fullWidth>

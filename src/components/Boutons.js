@@ -6,7 +6,7 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 export function ButtonPrimary(props) {
   return (
     <Link to={props.url}>
-      <Button className='bg-[#9333ea]' size={props.size} variant="filled">{props.name}</Button>
+      <Button className='bg-[#9333ea] normal-case font-Raleway font-medium' size={props.size} variant="filled">{props.name}</Button>
     </Link>
   )
 }
