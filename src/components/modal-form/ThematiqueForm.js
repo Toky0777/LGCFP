@@ -16,10 +16,10 @@ function ThematiqueForm() {
   }, []);
 
   const handleDomainChange = (event) => {
-    if ( event) {
+    if (event) {
       const selected = event;
       setSelectedDomain(selected);
-  
+
       const selectedDomainObj = domains.find((domain) => domain.domaine === selected);
       if (selectedDomainObj) {
         setThematics(selectedDomainObj.thematique);
@@ -28,14 +28,14 @@ function ThematiqueForm() {
       }
     }
   };
-  
+
   return (
     <Card className="mx-auto w-full max-w-[32rem]">
       <CardBody className="flex flex-col gap-4">
         <Typography variant="h4" color="blue-gray">
           Ajout d'un thématique
         </Typography>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-4'>
           <MyInput label="Type de formation" />
           <div className='flex flex-col gap-4'>
             <Select variant="outlined" label="Domaine" onChange={handleDomainChange}>
@@ -46,11 +46,11 @@ function ThematiqueForm() {
               ))}
             </Select>
             <Select variant="outlined" label="Thématique">
-            {thematics.map((thematic) => (
-              <Option key={thematic} value={thematic}>
-                {thematic}
-              </Option>
-            ))}
+              {thematics.map((thematic) => (
+                <Option key={thematic} value={thematic}>
+                  {thematic}
+                </Option>
+              ))}
             </Select>
           </div>
         </div>
