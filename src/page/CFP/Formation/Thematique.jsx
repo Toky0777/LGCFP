@@ -15,6 +15,7 @@ import { ButtonAdd } from '../../../components/Boutons'
 
 // ICON
 import { BookOpenIcon } from '@heroicons/react/24/solid'
+import ThematiqueForm from '../../../components/modal-form/ThematiqueForm';
 
 
 const TABLE_HEAD = ["Type de formation", "Domaine de formation", "Thématique", "Action"];
@@ -124,7 +125,7 @@ export default function Thematique() {
   return (
     <div>
       <NavBar />
-      <SubComponent icon={<BookOpenIcon class="w-7 text-gray-800" />} label="Thématique de formations" btn_name={<ButtonAdd name="Ajouter un thématique" size="sm" />} />
+      <SubComponent icon={<BookOpenIcon class="w-7 text-gray-800" />} label="Thématique de formations" btn_name={<ButtonAdd name="Ajouter un thématique" size="sm" modal_size="lg" modal={<ThematiqueForm />} />} />
       <MembersTable />
     </div>
   )

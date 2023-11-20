@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from "@material-tailwind/react";
+import { Button, Dialog } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
 import { PlusIcon } from '@heroicons/react/24/solid'
 
@@ -21,14 +21,26 @@ export function ButtonSecondary(props) {
   )
 }
 export function ButtonAdd(props) {
+  const { size, modal_size, name, modal } = props
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
+
   return (
-    <Link to={props.url}>
-      <Button variant="outlined" className='border-[#9333ea] text-[#9333ea] flex items-center gap-2 normal-case font-Raleway font-medium' size={props.size} >
+    <>
+      <Button variant="outlined" className='border-[#9333ea] text-[#9333ea] flex items-center gap-2 normal-case font-Raleway font-medium' size={size} onClick={handleOpen} >
         <PlusIcon className='w-4 h-4' />
-        {props.name}
+        {name}
       </Button>
-    </Link>
-  )
+      <Dialog
+        size={modal_size}
+        open={open}
+        handler={handleOpen}
+        className="bg-transparent shadow-none"
+      >
+        {modal}
+      </Dialog>
+    </>
+  );
 }
 
 export function ButtonGray(props) {
