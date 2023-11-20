@@ -1,4 +1,4 @@
-import { Input, Typography } from "@material-tailwind/react";
+import { Input, Option, Select, Textarea, Typography } from "@material-tailwind/react";
 import InfoIcon from '@mui/icons-material/Info';
 
 export function MyInput(props) {
@@ -11,8 +11,8 @@ export function MyInput(props) {
         color="green"
         className="mt-2 flex items-center gap-1 font-normal"
       >
-        {/* <InfoIcon /> */}
-        {/* Info norma. */}
+        <InfoIcon />
+        Info norma.
       </Typography> :
 
         <Typography
@@ -20,9 +20,9 @@ export function MyInput(props) {
           color="red"
           className="mt-2 flex items-center gap-1 font-normal"
         >
-          {/* <InfoIcon /> */}
-          {/* Message d'erreur. */}
-        </Typography>}
+          <InfoIcon />
+          Message d'erreur.
+        </Typography>} */}
 
     </div>
   );
