@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../../../layout/NavBar'
 import SubComponent from '../../../components/SubComponent'
-import { PencilIcon } from "@heroicons/react/24/solid";
+import EditIcon from '@mui/icons-material/Edit';
 import {
   Card,
   Typography,
@@ -41,7 +41,6 @@ function MembersTable() {
               {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
-                  // className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
                   className={`border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 ${
                     head === "Action" ? "text-center" : "text-left"
                   }`}
@@ -97,7 +96,7 @@ function MembersTable() {
                     <td className={`classes text-center`}>
                       <Tooltip content="Modifier">
                         <IconButton variant="text" color='blue'>
-                          <PencilIcon className="h-4 w-4 "/>
+                          <EditIcon className="h-4 w-4 "/>
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Supprimer">
