@@ -15,6 +15,7 @@ const NavList = [
     { titre: 'Collaborations', url: '/Collaboration' },
     {
         titre: 'Ressources', url: '/Fournisseur', dropdown: true, subItems: [
+            { subTitre: 'Stagiaire', subUrl: '/Stagiaire' },
             { subTitre: 'Référents', subUrl: '/Referent' },
             { subTitre: 'Formateurs', subUrl: '/Formateur' },
             { subTitre: 'Matériels', subUrl: '/Materiel' },

@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, Checkbox, Input, Option, Select, Typography } from '@material-tailwind/react'
+import { Card, CardBody, CardFooter, Option, Select, Typography } from '@material-tailwind/react'
 import React, { useState, useEffect } from 'react';
 import { MyInput } from '../MyInput'
 import { ButtonPrimary } from '../Boutons';
@@ -32,20 +32,20 @@ function ThematiqueForm() {
   return (
     <Card className="mx-auto w-full max-w-[32rem]">
       <CardBody className="flex flex-col gap-4">
-        <Typography variant="h4" color="blue-gray">
-          Ajout d'un thématique
-        </Typography>
-        <div className='flex flex-col gap-2'>
-          <MyInput label="Type de formation" />
+          <Typography variant="h4" color="blue-gray">
+            Ajout d'un thématique
+          </Typography>
+        <div className='flex flex-col gap-4'>
+          <MyInput color="purple" label="Type de formation" />
           <div className='flex flex-col gap-4'>
-            <Select variant="outlined" label="Domaine" onChange={handleDomainChange}>
+            <Select color="purple" variant="outlined" label="Domaine" onChange={handleDomainChange}>
               {domains.map((domain) => (
                 <Option key={domain.domaine} value={domain.domaine}>
                   {domain.domaine}
                 </Option>
               ))}
             </Select>
-            <Select variant="outlined" label="Thématique">
+            <Select color="purple" variant="outlined" label="Thématique">
             {thematics.map((thematic) => (
               <Option key={thematic} value={thematic}>
                 {thematic}

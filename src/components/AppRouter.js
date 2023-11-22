@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Welcome from '../page/Welcome'
 import Test from '../page/Test'
 import AccueilCfp from '../page/CFP/AccueilCfp'
+import Stagiaire from '../page/CFP/Ressources/Stagiaire'
 import Formateur from '../page/CFP/Ressources/Formateur'
 import Fournisseur from '../page/CFP/Ressources/Fournisseur'
 import Materiel from '../page/CFP/Ressources/Materiel'
@@ -79,6 +80,7 @@ export default function AppRouter() {
         <Route path="/Projet" element={<Projet />} />
         <Route path="/Agenda" element={<Agenda />} />
         <Route path="/Collaboration" element={<Collaboration />} />
+        <Route path="/Stagiaire" element={<Stagiaire />} />
         <Route path="/Referent" element={<Referent />} />
         <Route path="/Formateur" element={<Formateur />} />
         <Route path="/Materiel" element={<Materiel />} />

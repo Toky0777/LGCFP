@@ -19,7 +19,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MaterielForm from '../../../components/modal-form/MaterielForm';
 
 
-const TABLE_HEAD = ["Code", "Nom", "Type", "Fournisseur", "Action"];
+const TABLE_HEAD = ["Code", "Nom", "Type", "Fournisseur","Description", "Action"];
 
 const TABLE_ROWS = [
   {
@@ -27,17 +27,19 @@ const TABLE_ROWS = [
     nom: "Vidéo projecteur",
     type: "Externe",
     fournisseur: "VidéoPro",
+    description: "mon description",
   },
   {
     code: "002",
     nom: "PC",
     type: "Interne",
     fournisseur: "",
+    description: "mon description",
   },
 ];
 
 
-function MembersTable() {
+function MaterielTable() {
   return (
     <Card className="mx-4 h-full" shadow={false}>
 
@@ -65,7 +67,7 @@ function MembersTable() {
           </thead>
           <tbody>
             {TABLE_ROWS.map(
-              ({ code, nom, type, fournisseur }, index) => {
+              ({ code, nom, type, fournisseur, description }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
@@ -109,6 +111,15 @@ function MembersTable() {
                         {fournisseur}
                       </Typography>
                     </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {description}
+                      </Typography>
+                    </td>
                     <td className={`classes text-center`}>
                       <Tooltip content="Modifier">
                         <IconButton variant="text" color='blue'>
@@ -150,7 +161,7 @@ export default function Material() {
     <div>
       <NavBar />
       <SubComponent icon={<InventoryIcon class="w-7 text-gray-800" />} label="Matériels" btn_name={<ButtonAdd name="Ajouter un matériel" size="sm" modal_size="lg" modal={<MaterielForm />} />} />
-      <MembersTable />
+      <MaterielTable />
     </div>
   )
 }

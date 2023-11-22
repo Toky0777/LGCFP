@@ -3,18 +3,18 @@ import React from 'react'
 import { ButtonPrimary } from '../Boutons'
 import { MyInput } from '../MyInput'
 import InfoIcon from '@mui/icons-material/Info';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 
 
-export default function MaterielForm() {
+export default function SalleForm() {
   return (
     <div>
         <Card className="mx-auto w-full max-w-[50rem]">
           <CardBody className="flex flex-col gap-4">
             <div>
               <Typography variant="h4" color="blue-gray">
-                Ajout d'un matériel
+                Ajout d'une salle
               </Typography>
               <Typography
                 className="font-normal"
@@ -33,22 +33,32 @@ export default function MaterielForm() {
                   </Typography>
                 </div>
                 <div className='inline-flex items-center gap-4'>
-                  <MyInput label="Code" />
-                  <MyInput label="Nom" />
+                  <MyInput label="Salle de formation" />
+                    <Select color='purple' variant="outlined" label="Fournisseur">
+                        <Option>Fournisseur 1</Option>
+                        <Option>Fournisseur 2</Option>
+                        <Option>Fournisseur 3</Option>
+                    </Select>
                 </div>
-                <Select color='purple' variant="outlined" label="Type">
-                  <Option>Interne</Option>
-                  <Option>Externe</Option>
-                </Select>
               </div>
-              <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-3'>
                 <div className='inline-flex items-center gap-2 text-blue-gray-900'>
-                  <LocalOfferIcon fontSize='small' />
+                  <FmdGoodIcon fontSize='small' />
                   <Typography variant='lead'>
-                    Description
+                    Lieu
                   </Typography>
                 </div>
-                <Textarea color="purple" label="Description" />
+                <div className='inline-flex items-center gap-4'>
+                  <MyInput label="Quartier" />
+                    <Select color='purple' variant="outlined" label="Ville">
+                        <Option>Antananarivo</Option>
+                        <Option>Antsiranana</Option>
+                        <Option>Mahajanga</Option>
+                        <Option>Fianarantsoa</Option>
+                        <Option>Toamasina</Option>
+                        <Option>Toliara</Option>
+                    </Select>
+                </div>
               </div>
             </div>
           </CardBody>

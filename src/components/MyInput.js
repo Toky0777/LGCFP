@@ -4,7 +4,7 @@ import InfoIcon from '@mui/icons-material/Info';
 export function MyInput(props) {
   const { label, success } = props;
   return (
-    <div className="">
+    <div className="w-full">
       <Input label={label} color="purple" />
       {/* {success ? <Typography
         variant="small"
