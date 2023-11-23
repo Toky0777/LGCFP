@@ -243,21 +243,25 @@ function MembersTable() {
   
     return (
       <Tabs value="actif" className="max-w-screen mx-auto px-6">
-        <TabsHeader
-          className="bg-transparent max-w-screen-lg"
-          indicatorProps={{
-            className: "bg-gray-900/10 shadow-none !text-gray-900",
-          }}
-        >
-          {data.map(({ label, value, chips, color }) => (
-            <Tab key={value} value={value}>
-              <div className="inline-flex items-center gap-2">
-                <Typography variant="small">{label}</Typography>
-                <Chip color={color} value={chips} size="sm" className="normal-case font-normal rounded-full" />
-              </div>
-            </Tab>
-          ))}
-        </TabsHeader>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="col-start-2 col-span-4">
+            <TabsHeader
+            className="bg-transparent max-w-xl h-[50px]"
+            indicatorProps={{
+                className: "bg-blue-gray-50 shadow-none !text-gray-900",
+            }}
+            >
+            {data.map(({ label, value, chips, color }) => (
+                <Tab key={value} value={value}>
+                <div className="inline-flex items-center gap-2">
+                    <Typography variant="small">{label}</Typography>
+                    <Chip color={color} value={chips} size="sm" className="normal-case font-normal rounded-full" />
+                </div>
+                </Tab>
+            ))}
+            </TabsHeader>
+            </div>
+        </div>
         <TabsBody>
           {data.map(({ value, desc }) => (
             <TabPanel key={value} value={value}>

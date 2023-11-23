@@ -2,7 +2,7 @@ import React from 'react'
 
 
 export default function SubComponent(props) {
-  const { icon, label, btn_name } = props;
+  const { icon, label, btn_name, my_tabs } = props;
   return (
     <>
       <div class="flex flex-row items-center bg-gray-50 w-full h-[56px] px-4 relative right-0 justify-between">
@@ -13,6 +13,9 @@ export default function SubComponent(props) {
           </div>
           <div>
             {btn_name}
+          </div>
+          <div>
+            {my_tabs}
           </div>
         </div>
       </div>
