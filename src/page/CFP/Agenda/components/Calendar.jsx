@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -6,7 +6,7 @@ import listPlugin from '@fullcalendar/list';
 import multiMonthPlugin from '@fullcalendar/multimonth'
 import interactionPlugin from "@fullcalendar/interaction";
 import frLocale from '@fullcalendar/core/locales/fr';
-import { Card, Chip, Drawer, IconButton, List, ListItem, ListItemPrefix, ListItemSuffix, Typography } from '@material-tailwind/react';
+import { Card, Chip, Drawer, IconButton, List, ListItem, ListItemPrefix, ListItemSuffix, Option, Select, Typography } from '@material-tailwind/react';
 // icon
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import DomainIcon from '@mui/icons-material/Domain';
@@ -14,6 +14,8 @@ import RoomIcon from '@mui/icons-material/Room';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 export function Annuel() {
@@ -48,6 +50,7 @@ export function Annuel() {
                     <Chip
                       value={item.seance}
                       variant="ghost"
+                      color="red"
                       size="sm"
                       className="rounded-full"
                     />
@@ -62,11 +65,59 @@ export function Annuel() {
   );
 }
 
-
 export default function Calendar() {
 
   const [selectedEvent, setSelectedEvent] = React.useState(null);
   const [open, setOpen] = React.useState(false);
+
+  const calendarRef = useRef(null);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    updateCurrentDate();
+  }, []);
+
+  const updateCurrentDate = () => {
+    const calendarApi = calendarRef.current?.getApi();
+    const today = calendarApi?.getDate()?.toLocaleString('fr-FR', {
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'Europe/Moscow'
+    });
+    setCurrentDate(today);
+  };
+
+  const handleYearChange = (event) => {
+    const selected = parseInt(event.target.value, 10);
+    setSelectedYear(selected);
+    const calendarApi = calendarRef.current?.getApi();
+    calendarApi?.gotoDate(`${selected}-01-01`);
+    updateCurrentDate();
+  };
+
+  const goToToday = () => {
+    const calendarApi = calendarRef.current?.getApi();
+    calendarApi?.today();
+    updateCurrentDate();
+  };
+
+  const goToPrev = () => {
+    const calendarApi = calendarRef.current?.getApi();
+    calendarApi?.prev();
+    updateCurrentDate();
+  };
+
+  const goToNext = () => {
+    const calendarApi = calendarRef.current?.getApi();
+    calendarApi?.next();
+    updateCurrentDate();
+  };
+
+  const changeView = (view) => {
+    const calendarApi = calendarRef.current?.getApi();
+    calendarApi?.changeView(view);
+  };
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -127,7 +178,7 @@ export default function Calendar() {
 
   const events = [
     {
-      title: 'Événement 1',
+      title: 'Excel',
       start: '2023-11-27T08:00:00',
       end: '2023-11-27T10:00:00',
       color: '#ED6A5A',
@@ -141,10 +192,9 @@ export default function Calendar() {
       photo: 'images/e.jpg'
     },
     {
-      title: 'Événement 2',
+      title: 'PowerBI',
       start: '2023-11-30T08:00:00',
       end: '2023-11-30T10:00:00',
-      color: '#ED6A5A',
       formateur: 'Levy Raveloson',
       salle: 'Salle 1',
       client: 'Lecofruit',
@@ -155,10 +205,22 @@ export default function Calendar() {
       photo: 'images/lecofruit.png',
     },
     {
-      title: 'Événement 3',
+      title: 'Excel',
       start: '2023-11-30T08:00:00',
       end: '2023-11-30T10:00:00',
-      color: '#ED6A5A',
+      formateur: 'Levy Raveloson',
+      salle: 'Salle 1',
+      client: 'Numerika',
+      ville: 'Antananarivo',
+      type: 'Intra',
+      financement: 'Fonds propres',
+      ressources: 'PC, video projecteur',
+      photo: 'images/numerika.png'
+    },
+    {
+      title: 'PowerBI Niveau 1',
+      start: '2023-11-30T08:00:00',
+      end: '2023-11-30T10:00:00',
       formateur: 'Levy Raveloson',
       salle: 'Salle 1',
       client: 'Numerika',
@@ -171,122 +233,167 @@ export default function Calendar() {
   ];
 
   return (
-    <div className='h-[38em] overflow-y-auto'>
-        <FullCalendar
-          contentHeight= "auto"
-          dayMaxEventRows={2}
-          initialView="dayGridMonth"
-          weekends={true}
-          selectable={false}
-          firstDay={1}
-          eventMaxStack={3}
-          nowIndicator={true}
-          events={events}
-          headerToolbar={calendarOptions.headerToolbar}
-          locales={calendarOptions.locales}
-          locale={calendarOptions.locale}
-          plugins={[ dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin, multiMonthPlugin]}
-          eventColor= '#8E5EBA'
-          eventBorderColor= '#9333ea'
-          
-          eventClick={handleEventClick} // Handle event click
-        />
+    <div class="inline-flex items-start justify-between gap-4 w-[100%] px-6">
+        <div class="w-[16%]">
+          <Annuel />
+        </div>
 
-
-        <Drawer open={open} onClose={closeDrawer} className="p-4" placement="right">
-        {selectedEvent && (
-          <div>
-            <div className="mb-2 flex items-center justify-between">
-              <Typography variant="h5" color="blue-gray">
-                Informations
-              </Typography>
-              <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="h-5 w-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </IconButton>
-            </div>
-            <div className='py-4'>
-              <Typography variant="h5" color="blue-gray">
-                Projet : {selectedEvent.title}
-              </Typography>
-              <Typography color="gray">
-                {selectedEvent.start} - {selectedEvent.end}
-              </Typography>
-              <div className='flex items-center justify-center'>
-                <img src={selectedEvent.photo} alt="logo" className='h-20'/>
+        <div class="w-[84%]">
+          <div className='h-[38em] overflow-y-auto flex flex-col gap-3'>
+            <div className='inline-flex justify-between items-center w-full  border-[1px] border-gray-300 rounded-md px-4'>
+              <div className='inline-flex items-center gap-2'>
+                <select value={selectedYear} onChange={handleYearChange} className='bg-transparent text-sm outline-none'>
+                  {Array.from({ length: 7 }, (_, i) => {
+                    const year = new Date().getFullYear() - 3 + i;
+                    return (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    );
+                  })}
+                </select>
+                <button onClick={goToToday} className='border border-gray-300 2xl:text-sm md:text-md flex flex-row px-4 py-1 items-center hover:bg-gray-100 transition-all rounded-md'>Aujourd'hui</button>
               </div>
-              <List>
-                <ListItem>
-                  <ListItemPrefix>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="h-5 w-5"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </ListItemPrefix>
-                  {selectedEvent.formateur}
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <MeetingRoomIcon/>
-                  </ListItemPrefix>
-                  {selectedEvent.salle}
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <DomainIcon/>
-                  </ListItemPrefix>
-                  {selectedEvent.client}
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <RoomIcon/>
-                  </ListItemPrefix>
-                  {selectedEvent.ville}
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChecklistIcon/>
-                  </ListItemPrefix>
-                  {selectedEvent.type}
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <PaymentsIcon/>
-                  </ListItemPrefix>
-                  {selectedEvent.financement}
-                </ListItem>
-                <ListItem>
-                  <ListItemPrefix>
-                    <AllInboxIcon/>
-                  </ListItemPrefix>
-                  {selectedEvent.ressources}
-                </ListItem>
-              </List>
+
+              <div className='inline-flex items-center gap-4'>
+                <IconButton variant="text" className="rounded-full" onClick={goToPrev}>
+                  <ArrowBackIosNewIcon/>
+                </IconButton>
+                <span>{currentDate}</span>
+                {/* <button onClick={goToNext}>Suivant</button> */}
+                <IconButton variant="text" className="rounded-full" onClick={goToNext}>
+                  <ArrowForwardIosIcon/>
+                </IconButton>
+              </div>
+
+              <div className='inline-flex items-center gap-2'>
+                <button onClick={() => changeView('dayGridMonth')} className='border border-gray-300 2xl:text-sm md:text-md flex flex-row px-4 py-1 items-center hover:bg-gray-100 transition-all rounded-md'>Mois</button>
+                <button onClick={() => changeView('timeGridWeek')} className='border border-gray-300 2xl:text-sm md:text-md flex flex-row px-4 py-1 items-center hover:bg-gray-100 transition-all rounded-md'>Semaine</button>
+                <button onClick={() => changeView('list')} className='border border-gray-300 2xl:text-sm md:text-md flex flex-row px-4 py-1 items-center hover:bg-gray-100 transition-all rounded-md'>Liste</button>
+              </div>
             </div>
+
+              <FullCalendar
+                ref={calendarRef}
+                contentHeight= "auto"
+                dayMaxEventRows={2}
+                initialView="dayGridMonth"
+                weekends={true}
+                selectable={false}
+                firstDay={1}
+                eventMaxStack={3}
+                nowIndicator={true}
+                events={events}
+                // headerToolbar={calendarOptions.headerToolbar}
+                headerToolbar={false}
+                locales={calendarOptions.locales}
+                locale={calendarOptions.locale}
+                plugins={[ dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin, multiMonthPlugin]}
+                eventColor= '#8E5EBA'
+                eventBorderColor= '#9333ea'
+                slotMinTime= '05:00:00'
+                slotMaxTime= '19:00:00'
+                
+                eventClick={handleEventClick} // Handle event click
+              />
+
+
+              <Drawer open={open} onClose={closeDrawer} className="p-4" placement="right">
+              {selectedEvent && (
+                <div>
+                  <div className="mb-2 flex items-center justify-between">
+                    <Typography variant="h5" color="blue-gray">
+                      Informations
+                    </Typography>
+                    <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </IconButton>
+                  </div>
+                  <div className='py-4'>
+                    <Typography variant="h5" color="blue-gray">
+                      Projet : {selectedEvent.title}
+                    </Typography>
+                    <Typography color="gray">
+                      {selectedEvent.start} - {selectedEvent.end}
+                    </Typography>
+                    <div className='flex items-center justify-center'>
+                      <img src={selectedEvent.photo} alt="logo" className='h-20'/>
+                    </div>
+                    <List>
+                      <ListItem>
+                        <ListItemPrefix>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="h-5 w-5"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </ListItemPrefix>
+                        {selectedEvent.formateur}
+                      </ListItem>
+                      <ListItem>
+                        <ListItemPrefix>
+                          <MeetingRoomIcon/>
+                        </ListItemPrefix>
+                        {selectedEvent.salle}
+                      </ListItem>
+                      <ListItem>
+                        <ListItemPrefix>
+                          <DomainIcon/>
+                        </ListItemPrefix>
+                        {selectedEvent.client}
+                      </ListItem>
+                      <ListItem>
+                        <ListItemPrefix>
+                          <RoomIcon/>
+                        </ListItemPrefix>
+                        {selectedEvent.ville}
+                      </ListItem>
+                      <ListItem>
+                        <ListItemPrefix>
+                          <ChecklistIcon/>
+                        </ListItemPrefix>
+                        {selectedEvent.type}
+                      </ListItem>
+                      <ListItem>
+                        <ListItemPrefix>
+                          <PaymentsIcon/>
+                        </ListItemPrefix>
+                        {selectedEvent.financement}
+                      </ListItem>
+                      <ListItem>
+                        <ListItemPrefix>
+                          <AllInboxIcon/>
+                        </ListItemPrefix>
+                        {selectedEvent.ressources}
+                      </ListItem>
+                    </List>
+                  </div>
+                </div>
+              )}
+              </Drawer>
+              
           </div>
-        )}
-        </Drawer>
-        
-    </div>
+        </div>
+      </div>
   )
 }

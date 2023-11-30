@@ -12,16 +12,16 @@ export default function Agenda() {
       <NavBar/>
       <SubComponent icon={<CalendarMonthIcon class="w-7 text-gray-800" />} label="Agenda"/>
 
-      <div class="inline-flex items-start justify-between gap-4 w-[100%] px-6">
+      {/* <div class="inline-flex items-start justify-between gap-4 w-[100%] px-6">
         <div class="w-[16%]">
-          <Annuel/>
+          <Annuel />
         </div>
 
         <div class="w-[84%]">
           <Calendar/>
-          </div>
         </div>
-        {/* <Calendar/> */}
+      </div> */}
+        <Calendar/>
     </div>
   )
 }
