@@ -8,7 +8,6 @@ import {
   CardBody,
   Chip,
   CardFooter,
-  Avatar,
   IconButton,
   Tooltip,
  Tab, TabPanel, Tabs, TabsBody, TabsHeader, Rating, 

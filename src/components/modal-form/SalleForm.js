@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, Option, Select, Textarea, Typography } from '@material-tailwind/react'
+import { Card, CardBody, CardFooter, Option, Select, Typography } from '@material-tailwind/react'
 import React from 'react'
 import { ButtonPrimary } from '../Boutons'
 import { MyInput } from '../MyInput'

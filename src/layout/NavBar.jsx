@@ -23,18 +23,18 @@ const NavList = [
             { subTitre: 'Fournisseurs', subUrl: '/Fournisseur' },
         ]
     },
-    {
-        titre: 'CRM', url: '/Facture', dropdown: true, subItems: [
-            { subTitre: 'Facture', subUrl: '/Facture' },
-        ]
-    },
-    { titre: 'Finances', url: '/Finance' },
-    {
-        titre: 'Quiz', url: '/Resultat', dropdown: true, subItems: [
-            { subTitre: 'Résultat', subUrl: '/Resultat' },
-        ]
-    },
-    { titre: 'FMFP', url: '/Fmfp' },
+    // {
+    //     titre: 'CRM', url: '/Facture', dropdown: true, subItems: [
+    //         { subTitre: 'Facture', subUrl: '/Facture' },
+    //     ]
+    // },
+    // { titre: 'Finances', url: '/Finance' },
+    // {
+    //     titre: 'Quiz', url: '/Resultat', dropdown: true, subItems: [
+    //         { subTitre: 'Résultat', subUrl: '/Resultat' },
+    //     ]
+    // },
+    // { titre: 'FMFP', url: '/Fmfp' },
 ]
 
 export default function NavBar() {
