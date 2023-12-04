@@ -46,7 +46,7 @@ export function ButtonAdd(props) {
 export function ButtonGray(props) {
   return (
     <Link to={props.url}>
-      <Button variant="text" className="flex items-center gap-2 bg-gray-100" size={props.size}>
+      <Button variant="text" className="flex items-center gap-2" size={props.size}>
         {props.name}
         <svg
           xmlns="http://www.w3.org/2000/svg"

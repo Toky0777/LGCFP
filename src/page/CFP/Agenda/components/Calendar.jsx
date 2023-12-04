@@ -6,7 +6,7 @@ import listPlugin from '@fullcalendar/list';
 import multiMonthPlugin from '@fullcalendar/multimonth'
 import interactionPlugin from "@fullcalendar/interaction";
 import frLocale from '@fullcalendar/core/locales/fr';
-import { Card, Chip, Drawer, IconButton, List, ListItem, ListItemPrefix, ListItemSuffix, Option, Select, Typography } from '@material-tailwind/react';
+import { Avatar, Card, Chip, Drawer, IconButton, List, ListItem, ListItemPrefix, ListItemSuffix, Typography } from '@material-tailwind/react';
 // icon
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import DomainIcon from '@mui/icons-material/Domain';
@@ -64,6 +64,50 @@ export function Annuel() {
     </>
   );
 }
+
+export function Filter() {
+  const COLOR_FORMATEUR = [
+    { name: "Dani Rasolo", img: "https://docs.material-tailwind.com/img/face-1.jpg", color:"ED6A5A" },
+    { name: "Levy Ravelo", img: "https://docs.material-tailwind.com/img/face-1.jpg", color:"4ade80" },
+    { name: "Rakoto Rabe", img: "https://docs.material-tailwind.com/img/face-1.jpg", color:"e3ad01" },
+    { name: "Yonah Andria", img: "https://docs.material-tailwind.com/img/face-1.jpg", color:"9333ea" },
+    { name: "Yonah Andria", img: "https://docs.material-tailwind.com/img/face-1.jpg", color:"607d8b" },
+  ];
+  return (
+    <>
+      <div>
+      <Card shadow={false} className='border'>
+        <div className=''>
+          <div class="flex justify-center items-center h-[40px] border-[1px] bg-purple-50 border-purple-500 rounded-t-md">
+            <h2 class="text-sm text-purple-500 font-semibold">FORMATEUR</h2>
+          </div>
+          {COLOR_FORMATEUR.map((item) => (
+          <List key={item.name}>
+            <ListItem className='py-1'>
+              <ListItemPrefix>
+                <div className={`bg-[#${item.color}] p-1 rounded-full`}></div>
+                {/* <div className={`bg-${item.color}-500 p-1 rounded-full`}></div> */}
+                {/* <span className="bg-[#4ade80] p-1 rounded-full"></span> */}
+              </ListItemPrefix>
+              <ListItemPrefix>
+                <Avatar variant="circular" alt="candice" src={item.img}className='w-7 h-7'/>
+              </ListItemPrefix>
+              <div>
+                <Typography variant="small" color="gray" className="font-normal">
+                {item.name}
+                </Typography>
+              </div>
+            </ListItem>
+          </List>
+          ))}
+        </div>
+      </Card>
+      </div>
+    </>
+  )
+} 
+
+
 
 export default function Calendar() {
 
@@ -179,8 +223,8 @@ export default function Calendar() {
   const events = [
     {
       title: 'Excel',
-      start: '2023-11-27T08:00:00',
-      end: '2023-11-27T10:00:00',
+      start: '2023-12-04T08:00:00',
+      end: '2023-12-04T10:00:00',
       color: '#ED6A5A',
       formateur: 'Levy Raveloson',
       salle: 'Salle 1',
@@ -193,8 +237,9 @@ export default function Calendar() {
     },
     {
       title: 'PowerBI',
-      start: '2023-11-30T08:00:00',
-      end: '2023-11-30T10:00:00',
+      start: '2023-12-14T09:00:00',
+      end: '2023-12-14T11:00:00',
+      color: '#4ade80',
       formateur: 'Levy Raveloson',
       salle: 'Salle 1',
       client: 'Lecofruit',
@@ -206,8 +251,8 @@ export default function Calendar() {
     },
     {
       title: 'Excel',
-      start: '2023-11-30T08:00:00',
-      end: '2023-11-30T10:00:00',
+      start: '2023-12-14T10:00:00',
+      end: '2023-12-14T12:00:00',
       formateur: 'Levy Raveloson',
       salle: 'Salle 1',
       client: 'Numerika',
@@ -219,8 +264,9 @@ export default function Calendar() {
     },
     {
       title: 'PowerBI Niveau 1',
-      start: '2023-11-30T08:00:00',
-      end: '2023-11-30T10:00:00',
+      start: '2023-12-14T08:00:00',
+      end: '2023-12-14T10:00:00',
+      color: '#e3ad01',
       formateur: 'Levy Raveloson',
       salle: 'Salle 1',
       client: 'Numerika',
@@ -235,7 +281,8 @@ export default function Calendar() {
   return (
     <div class="inline-flex items-start justify-between gap-4 w-[100%] px-6">
         <div class="w-[16%]">
-          <Annuel />
+          {/* <Annuel /> */}
+          <Filter/>
         </div>
 
         <div class="w-[84%]">
@@ -252,6 +299,8 @@ export default function Calendar() {
                     );
                   })}
                 </select>
+                <button onClick={() => changeView('multiMonthYear')} className='border border-gray-300 2xl:text-sm md:text-md flex flex-row px-4 py-1 items-center hover:bg-gray-100 transition-all rounded-md'>Annuel</button>
+
                 <button onClick={goToToday} className='border border-gray-300 2xl:text-sm md:text-md flex flex-row px-4 py-1 items-center hover:bg-gray-100 transition-all rounded-md'>Aujourd'hui</button>
               </div>
 
